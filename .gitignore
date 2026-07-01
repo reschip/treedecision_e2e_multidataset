@@ -1,0 +1,56 @@
+# Data
+data/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.so
+
+# Environments
+.env
+.venv/
+env/
+venv/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Test artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+
+# Docker
+*.env.local
+
+# LaTeX reports
+*.aux
+*.out
+*.log
+*.pdf
+
+# MD
+api_guide.md
+consumoAstro.md
+guiaDigitalOcean.md
+
+
+Makefile

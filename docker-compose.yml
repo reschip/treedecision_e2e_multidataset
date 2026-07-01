@@ -1,0 +1,36 @@
+# docker-compose.yml - Portfolio API deployment
+#
+# Services:
+#   api   - FastAPI + uvicorn (port 8000)
+#
+# Usage:
+#   docker compose up --build          # Start API
+#   docker compose logs -f api         # View logs
+#   docker compose down                # Stop API
+#
+# Note: In a production portfolio deployment (Render, Railway, Heroku), 
+# HTTPS and load balancing are handled automatically by the platform provider.
+
+services:
+
+  # -- FastAPI + uvicorn -------------------------------------------------------
+  api:
+    build:
+      context: .
+      dockerfile: services/model_api/Dockerfile
+    env_file:
+      - .env                          # Load environment variables
+    ports:
+      - "8000:8000"                   # Expose port 8000 to the host
+    volumes:
+      # Mount model artifacts read-only to avoid rebuilding image on retrain
+      - ./packages/domain_wine/models:/app/packages/domain_wine/models:ro
+      - ./packages/domain_breast/models:/app/packages/domain_breast/models:ro
+      - ./packages/domain_adultincome/models:/app/packages/domain_adultincome/models:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s               # Grace period during startup

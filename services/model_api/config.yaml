@@ -1,0 +1,23 @@
+# model_api - FastAPI service configuration
+
+server:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 2
+  reload: false         # set to true in development
+
+logging:
+  level: INFO
+  format: "%(asctime)s | %(levelname)s | %(name)s | %(message)s"
+
+cors:
+  allow_origins: ["*"]  # restrict in production
+
+models:
+  wine:
+    white: "packages/domain_wine/models/vino_blanco.joblib"
+    red:   "packages/domain_wine/models/vino_tinto.joblib"
+  breast:
+    wdbc: "packages/domain_breast/models/wdbc_model.joblib"
+  adult:
+    income: "packages/domain_adultincome/models/adult_income_decision_tree.joblib"

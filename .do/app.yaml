@@ -4,7 +4,7 @@ name: tree-decision-api
 services:
   - name: api
     # Build from Dockerfile (multi-stage, context = repo root)
-    dockerfile_path: services/model_api/Dockerfile
+    dockerfile_path: Dockerfile
     source_dir: /           # Build context is the repo root
     github:
       branch: main          # ← cambia a tu rama si no es "main"
